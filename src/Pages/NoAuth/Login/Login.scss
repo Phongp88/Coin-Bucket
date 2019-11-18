@@ -1,0 +1,19 @@
+@import "../../../Styles/variables", "../../../Styles/mixins";
+
+.login {
+  position: relative;
+  @include flex;
+  width: 100%;
+  min-width: $minWidthDesktop;
+  height: 100vh;
+  background-color: $grey-100;
+  overflow: hidden;
+  &__formWrapper {
+    height: auto;
+    width: 500px;
+    @include flexCol;
+    padding: 42px;
+    background-color: white;
+    @include shadow-1;
+  }
+}
