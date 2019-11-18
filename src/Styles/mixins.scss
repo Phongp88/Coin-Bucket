@@ -1,0 +1,199 @@
+@import "variables";
+
+///////////////////
+///// LAYOUT /////
+/////////////////
+
+@mixin flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexLeft {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+@mixin flexRight {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+@mixin flexStart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin flexEnd {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@mixin flexSpaceAround {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@mixin flexSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flexSpaceAround {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@mixin flexCol {
+  @include flex;
+  flex-direction: column;
+}
+
+@mixin flexColLeft {
+  @include flexLeft;
+  flex-direction: column;
+}
+
+@mixin flexColRight {
+  @include flexRight;
+  flex-direction: column;
+}
+
+@mixin flexColStart {
+  @include flexStart;
+  flex-direction: column;
+}
+
+@mixin flexColEnd {
+  @include flexEnd;
+  flex-direction: column;
+}
+
+@mixin flexColSpaceBetween {
+  @include flexSpaceBetween;
+  flex-direction: column;
+}
+
+///////////////////
+///// COLORS /////
+/////////////////
+
+@mixin gradient {
+  background: $primaryColor;
+  background: -webkit-linear-gradient(
+    $gradientDegree,
+    $primaryColor,
+    $secondaryColor
+  );
+  background: linear-gradient($gradientDegree, $primaryColor, $secondaryColor);
+}
+
+@mixin gradientTertiary {
+  background: $primaryColor;
+  background: -webkit-linear-gradient(
+    $gradientDegree,
+    $primaryColor,
+    $tertiaryColor,
+    $secondaryColor
+  );
+  background: linear-gradient(
+    $gradientDegree,
+    $primaryColor,
+    $secondaryColor,
+    $tertiaryColor
+  );
+}
+
+@mixin gradientTertiaryLight {
+  background: lighten($primaryColor, 25%);
+  background: -webkit-linear-gradient(
+    $gradientDegree,
+    lighten($primaryColor, 25%),
+    lighten($tertiaryColor, 25%),
+    lighten($secondaryColor, 25%)
+  );
+
+  background: linear-gradient(
+    $gradientDegree,
+    lighten($primaryColor, 25%),
+    lighten($tertiaryColor, 25%),
+    lighten($secondaryColor, 25%)
+  );
+}
+
+@mixin gradientText {
+  @include gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin gradientTertiaryText {
+  @include gradientTertiary;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+//////////////////////
+///// ANIMATION /////
+////////////////////
+
+@mixin transition-1 {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+//////////////////
+///// OTHER /////
+////////////////
+
+@mixin shadow-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+@mixin shadow-2 {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+@mixin shadow-3 {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+@mixin card-1 {
+  cursor: pointer;
+  @include shadow-1;
+  @include transition-1;
+  &:hover {
+    @include shadow-2;
+  }
+}
+
+@mixin card-2 {
+  @include shadow-2;
+  @include transition-1;
+  &:hover {
+    @include shadow-3;
+  }
+}
+
+/////////////////
+///// TEXT /////
+///////////////
+
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin noSelect {
+  -webkit-touch-callout: none;
+  user-select: none;
+}
