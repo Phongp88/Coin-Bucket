@@ -24,7 +24,47 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Coin Bucket</title>
+
+    <!-- Fix for Flash of Unstyled Text bug -->
+    <script>
+      WebFontConfig = {
+        google: {
+          families: ["Poppins"]
+        }
+      };
+      (function(d) {
+        var wf = d.createElement("script"),
+          s = d.scripts[0];
+        wf.src =
+          "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js";
+        wf.async = true;
+        s.parentNode.insertBefore(wf, s);
+      })(document);
+    </script>
+    <style>
+      .wf-loading span,
+      .wf-loading h1,
+      .wf-loading h2,
+      .wf-loading h3,
+      .wf-loading h4,
+      .wf-loading h5,
+      .wf-loading h6,
+      .wf-loading p {
+        opacity: 0;
+      }
+      .wf-active span,
+      .wf-active h1,
+      .wf-active h2,
+      .wf-active h3,
+      .wf-active h4,
+      .wf-active h5,
+      .wf-active h6,
+      .wf-active p {
+        opacity: 1;
+      }
+    </style>
+    <!-- End -->
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
