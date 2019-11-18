@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { initAuthListener } from "./Redux/Actions/auth";
+import Login from "./Pages/NoAuth/Login/";
+import Dashboard from "./Pages/Auth/Dashboard";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = ({
+  initAuthListener,
+  isAuthed = false,
+  hasCheckedForAuth = false
+}) => {
+  useEffect(() => {
+    initAuthListener();
+  }, []);
+  // To Avoid a flash on the login screen from login -> dashboard
+  if (!hasCheckedForAuth) return null;
+  if (!isAuthed) return <Login />;
+  return <Dashboard />;
+};
 
-export default App;
+const mapStateToProps = state => ({
+  isAuthed: state.auth.isAuthed,
+  hasCheckedForAuth: state.auth.hasCheckedForAuth
+});
+
+const mapDispatchToProps = dispatch => ({
+  initAuthListener: payload => dispatch(initAuthListener(payload))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
