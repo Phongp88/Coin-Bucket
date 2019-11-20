@@ -1,4 +1,5 @@
 import firebaseApp from "../../Firebase/config";
+import fire from "../../Firebase/config";
 
 /////////////////////
 ///// FIREBASE /////
@@ -12,13 +13,32 @@ import firebaseApp from "../../Firebase/config";
 
 export const initAuthListener = () => dispatch => {
   firebaseApp.auth().onAuthStateChanged(user => {
-    user
-      ? dispatch({
-          type: "LOGIN",
-          payload: user
-        })
-      : dispatch({
-          type: "LOGOUT"
-        });
+    if (user) {
+      console.log("USER! - ", user);
+      dispatch({
+        type: "LOGIN",
+        payload: user
+      });
+    } else {
+      console.log("User does not exist");
+      dispatch({
+        type: "LOGOUT"
+      });
+    }
   });
+};
+
+
+export const login = (email, password) => dispatch => {
+  fire
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(error => {
+      dispatch({
+        type: "LOGIN_FAIL"
+      });
+    });
 };
